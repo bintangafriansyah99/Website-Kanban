@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KanbanKu - Papan Manajemen Tugas</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">📁 KanbanKu</div>
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Cari tugas atau label..."
+        >
+
+        <select id="priorityFilter">
+            <option value="all">Semua prioritas</option>
+            <option value="Tinggi">Prioritas Tinggi</option>
+            <option value="Sedang">Prioritas Sedang</option>
+            <option value="Rendah">Prioritas Rendah</option>
+        </select>
+
+        <div class="header-actions">
+            <button id="themeButton">🌙 Tema</button>
+            <button id="resetButton">↻ Reset</button>
+        </div>
+    </header>
+
+    <!-- STATISTIK -->
+    <section class="statistics">
+        <div class="stat-card">
+            Total tugas: <strong id="totalTasks">0</strong>
+        </div>
+
+        <div class="stat-card">
+            Selesai: <strong id="completedTasks">0</strong>
+            <span id="completionPercent">(0%)</span>
+        </div>
+
+        <div class="stat-card">
+            Terlambat: <strong id="lateTasks">0</strong>
+        </div>
+    </section>
+
+    <!-- PAPAN KANBAN -->
+    <main class="kanban-board" id="kanbanBoard">
+        <!-- Kolom dibuat oleh JavaScript -->
+    </main>
+
+    <!-- MODAL TAMBAH / EDIT TUGAS -->
+    <div class="modal-overlay" id="taskModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 id="modalTitle">Tugas baru</h2>
+                <button type="button" class="close-button"
+                    id="closeModalButton">✕</button>
+            </div>
+
+            <form id="taskForm">
+
+                <label for="taskTitle">JUDUL TUGAS</label>
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="Mis. Menyusun laporan"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="taskDescription">DESKRIPSI</label>
+                <textarea
+                    id="taskDescription"
+                    placeholder="Masukkan detail tugas..."
+                    rows="3"
+                ></textarea>
+
+                <div class="form-row">
+
+                    <div>
+                        <label for="taskPriority">PRIORITAS</label>
+                        <select id="taskPriority">
+                            <option value="Rendah">Rendah</option>
+                            <option value="Sedang" selected>Sedang</option>
+                            <option value="Tinggi">Tinggi</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="taskDeadline">TENGGAT</label>
+                        <input type="date" id="taskDeadline">
+                    </div>
+
+                </div>
+
+                <label for="taskLabel">LABEL</label>
+                <input
+                    type="text"
+                    id="taskLabel"
+                    placeholder="Mis. Desain, Backend, Kuliah"
+                    maxlength="40"
+                >
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-button"
+                        id="cancelButton">Batal</button>
+
+                    <button type="submit" class="save-button">
+                        Simpan
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH KOLOM -->
+<div class="modal-overlay" id="columnModal">
+
+    <div class="modal-content column-modal-content">
+
+        <div class="modal-header">
+            <h2 id="columnModalTitle">Kolom baru</h2>
+
+            <button
+                type="button"
+                class="close-button"
+                id="closeColumnModalButton">
+                ✕
+            </button>
+        </div>
+
+        <form id="columnForm">
+
+            <input
+                type="text"
+                id="columnName"
+                placeholder="Nama kolom"
+                maxlength="30"
+                autocomplete="off"
+                required
+            >
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelColumnButton">
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-button"
+                    id="saveColumnButton">
+                    Tambah
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+    <!-- NOTIFIKASI -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
